@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/card.css">
+	<link rel="stylesheet" href="css/flip.css">
+</head>
+<body>
+<div class="card-wall">
+	<ul class="card-group">
+
+		<li class="card">
+			<div class="card-front">Six First Level</div>
+			<ul class="card-group">
+
+				<li class="card">
+					<div class="card-front">Seven First Level</div>
+					<ul class="card-group"></ul>
+
+			</ul>
+
+		<li class="card">
+			<div class="card-front">One First Level</div>
+			<ul class="card-group">
+
+				<li class="card">
+					<div class="card-front">Second Level</div>
+					<ul class="card-group">
+
+						<li class="card">
+							<div class="card-front">Third Level</div>
+							<ul class="card-group"></ul>
+
+					</ul>
+
+				<li class="card">
+					<div class="card-front">Second Level</div>
+					<ul class="card-group">
+
+						<li class="card">
+							<div class="card-front">Third Level</div>
+							<ul class="card-group"></ul>
+
+						<li class="card">
+							<div class="card-front">Third Level</div>
+							<ul class="card-group">
+
+								<li class="card">
+									<div class="card-front">Fourth Level</div>
+									<ul class="card-group"></ul>
+
+								<li class="card">
+									<div class="card-front">Fourth Level</div>
+									<ul class="card-group">
+
+										<li class="card">
+											<div class="card-front">FIFTH Level</div>
+											<ul class="card-group"></ul>
+
+										<li class="card">
+											<div class="card-front">FIFTH Level</div>
+											<ul class="card-group"></ul>
+
+									</ul>
+
+							</ul>
+					</ul>
+
+			</ul>
+
+		<li class="card">
+			<div class="card-front">Two First Level</div>
+			<ul class="card-group"></ul>
+
+		<li class="card">
+			<div class="card-front">Three First Level</div>
+			<ul class="card-group"></ul>
+
+		<li class="card">
+			<div class="card-front">Four First Level</div>
+			<ul class="card-group"></ul>
+
+		<li class="card">
+			<div class="card-front">Five First Level</div>
+			<ul class="card-group"></ul>
+
+	</ul>
+</div>
+
+
+<template id="cardLayoutTemplate">
+<div class="card-layout">
+	<div class="card-flipper">
+		<div class="card-front">Second Level</div>
+		<div class="card-back"><span class="glyphicon glyphicon-remove unflip-card-button"></span>Back of the card</div>
+	</div>
+</div>
+</template>
+
+<script src="http://localhost:35729/livereload.js"></script>
+<script src="bower_components/jquery/jquery.min.js"></script>
+<script src="bower_components/jquery.ui/ui/jquery.ui.core.js"></script>
+<script src="bower_components/jquery.ui/ui/jquery.ui.widget.js"></script>
+<script src="bower_components/jquery.ui/ui/jquery.ui.mouse.js"></script>
+<script src="bower_components/jquery.ui/ui/jquery.ui.sortable.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="js/flipdrop.js"></script>
+</body>
+</html>

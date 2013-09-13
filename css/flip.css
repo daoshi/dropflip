@@ -1,0 +1,96 @@
+
+.first-level-card .card-front {
+	font-weight: bold;
+	color: #fff;
+	text-transform: uppercase;
+	padding: 10px 15px;
+}
+
+.second-level-card .card-front {
+	font-weight: bold;
+	color: #3188AB;
+}
+
+.card-layout {
+	width: 300px;
+	height: 50px;
+
+	-webkit-perspective: 1000;
+	-moz-perspective: 1000;
+	perspective: 1000;
+}
+
+.card-layout.card-flipped .card-flipper {
+	position: relative;
+
+	-webkit-transform: rotateY(180deg);
+	-moz-transform: rotateY(180deg);
+	transform: rotateY(180deg);
+}
+
+.card-flipper {
+	-webkit-transition: 0.6s;
+	-webkit-transform-style: preserve-3d;
+	-moz-transition: 0.6s;
+	-moz-transform-style: preserve-3d;
+	transition: 0.6s;
+	transform-style: preserve-3d;
+}
+
+
+.card-flipper .card-front {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 50px;
+
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.card-back {
+	background: #ccc;
+	width: 100%;
+	height: 50px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 2;
+	border-radius: 5px;
+	border: 1px solid #aaa;
+	box-shadow: #aaa 3px 3px 3px;
+	padding: 1em;
+
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	backface-visibility: hidden;
+
+	-webkit-transform: rotateY(180deg);
+	-moz-transform: rotateY(180deg);
+	transform: rotateY(180deg);
+
+	-webkit-transition: width .6s, height .6s;
+	-moz-transition: width .6s, height .6s;
+	transition: width .6s, height .6s;
+}
+
+.card-layout.card-flipped .card-back {
+	height: 400px;
+	width: 600px;
+}
+
+.unflip-card-button {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	cursor: pointer;
+}
