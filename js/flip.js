@@ -1,5 +1,14 @@
 (function(){
 
+	var flipContainerTemplate = [
+		'<div class="flip-container">',
+			'<div class="flipper">',
+				'<div class="card-front">Second Level</div>',
+				'<div class="card-back"><span class="glyphicon glyphicon-remove unflip-button"></span>Back of the card</div>',
+			'</div>',
+		'</div>'
+	].join('');
+
 	var cardClasses = [
 		'first-level-card',
 		'second-level-card',
@@ -25,7 +34,7 @@
 		card.addClass('card-flipped');
 
 		// create a container
-		var flipContainer = $($('#flipContainerTemplate').html());
+		var flipContainer = $(flipContainerTemplate);
 
 		// figure out the level of depth by counting how many
 		// parent cards there are
@@ -53,7 +62,9 @@
 		flipContainer.addClass('flipped').animate({
 			top: 50,
 			left: $(window).width() / 2 - 300 // center it on the screen
-		}, 500);
+		}, 500, function(){
+			flipContainer.draggable();
+		});
 
 	}
 
@@ -74,6 +85,7 @@
 			top: flippedCard.offset().top - $(window).scrollTop() + 'px',
 			left: flippedCard.offset().left - $(window).scrollLeft() + 'px'
 		}, 500, function(){
+			flipContainer.draggable('destroy');
 			flipContainer.remove();
 			flippedCard.removeClass('card-flipped');
 		});
