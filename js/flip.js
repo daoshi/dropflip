@@ -1,10 +1,7 @@
 (function(){
 
-	var layout;
-	var outsideLayout;
-	var flipper;
-	var top;
-	var left;
+	var flippedCard;
+	var oldFlippedCard;
 
 	var cardClasses = [
 		'first-level-card',
@@ -14,60 +11,78 @@
 		'fifth-level-card'
 	];
 
-	$('.card-front').on('dblclick', function(){
+	function flip(e){
 
+		e.stopPropagation();
+
+		// card is already flipped. do not continue
+		if(flippedCard && flippedCard[0] === e.currentTarget) return;
+
+		if(flippedCard) oldFlippedCard = flippedCard;
+
+		// save the card that was double clicked
+		flippedCard = $(e.currentTarget);
+		flippedCard.addClass('flipped');
+
+		// unflip any already opened cards
 		unflip();
 
-		var cardClass = cardClasses[$(this).parents('.card').length-1];
+		// create a container
+		var flipContainer = $($('#flipContainerTemplate').html());
 
-		layout = $(this).closest('.card-layout');
-		flipper = layout.find('.card-flipper');
+		// figure out the level of depth by counting how many
+		// parent cards there are
+		var cardClass = cardClasses[flippedCard.parents('.card').length];
+		// add the class corresponding to the appropriate level of depth
+		// to match look and feel
+		flipContainer.addClass(cardClass);
 
-		outsideLayout = $('<div class="card-layout '+cardClass+'">');
-		outsideLayout.append(flipper);
+		// insert into DOM
+		$('body').append(flipContainer);
 
-		$('body').append(outsideLayout);
+		// get the position of the card in the card wall
+		var position = {
+			top: flippedCard.offset().top + 'px',
+			left: flippedCard.offset().left + 'px'
+		};
+		// store it in the container for later retreval
+		flipContainer.data(position);
+		// set the position the container to that of the card
+		flipContainer.css(position);
 
-		top = layout.offset().top + 'px';
-		left = layout.offset().left + 'px';
-
-		outsideLayout.css({
-			position: 'fixed',
-			top: top,
-			left: left
-		});
-		outsideLayout.addClass('card-flipped');
-
-		outsideLayout.animate({
+		// do flip animation
+		flipContainer.addClass('flipped').animate({
 			top: 50,
-			left: $(window).width() / 2 - 300
-		}, 600, function(){});
+			left: $(window).width() / 2 - 300 // center it on the screen
+		}, 600);
 
-	});
-
-
-	$('.unflip-card-button').on('click', unflip);
-
+	}
 
 	function unflip(){
 
-		if(!layout || !outsideLayout || !flipper) return;
+		// look for an existing container
+		var flipContainer = $('.flip-container');
 
-		outsideLayout.removeClass('card-flipped');
+		// none exists. no need to proceed
+		if(!flipContainer[0]) return;
 
-		outsideLayout.animate({
-			top: top,
-			left: left
-		}, 600, function(){});
+		// one exists. remove the flipped class
+		flipContainer.removeClass('flipped');
 
-		setTimeout(function(){
-			layout.append(flipper);
-			outsideLayout.remove();
+		// animate back to the card's position in the card wall
+		flipContainer.animate({
+			top: flipContainer.data('top'),
+			left: flipContainer.data('left')
+		}, 600, function(){
+			flipContainer.remove(); // remove it from the DOM
+			oldFlippedCard.removeClass('flipped');
+		});
 
-			layout = outsideLayout = flipper = top = left = null;
-
-		}, 600);
 	}
+
+	// setup events
+	$('.card-wall .card').on('dblclick', flip);
+	$('.unflip-button').on('click', unflip);
 
 })();
 

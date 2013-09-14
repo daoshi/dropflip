@@ -1,17 +1,40 @@
 
+.flip-container .card-front {
+	width: 600px;
+	height: 400px;
+	background-color: #3188AB;
+	z-index: 4;
+}
+
 .first-level-card .card-front {
 	font-weight: bold;
 	color: #fff;
 	text-transform: uppercase;
 	padding: 10px 15px;
+	background-color: #3188AB;
 }
 
 .second-level-card .card-front {
 	font-weight: bold;
 	color: #3188AB;
+	background-color: #D9E2E8;
 }
 
-.card-layout {
+.third-level-card .card-front {
+	background-color: #fff;
+}
+
+.fourth-level-card .card-front {
+	background-color: #FFF1E2;
+}
+
+.fifth-level-card .card-front {
+	background-color: #fff;
+}
+
+
+.flip-container {
+	position: fixed;
 	width: 300px;
 	height: 50px;
 
@@ -20,7 +43,7 @@
 	perspective: 1000;
 }
 
-.card-layout.card-flipped .card-flipper {
+.flip-container.flipped .flipper {
 	position: relative;
 
 	-webkit-transform: rotateY(180deg);
@@ -28,7 +51,7 @@
 	transform: rotateY(180deg);
 }
 
-.card-flipper {
+.flipper {
 	-webkit-transition: 0.6s;
 	-webkit-transform-style: preserve-3d;
 	-moz-transition: 0.6s;
@@ -38,7 +61,7 @@
 }
 
 
-.card-flipper .card-front {
+.flipper .card-front {
 	width: 100%;
 	position: absolute;
 	top: 0;
@@ -83,7 +106,7 @@
 	transition: width .6s, height .6s;
 }
 
-.card-layout.card-flipped .card-back {
+.flip-container.flipped .card-back {
 	height: 400px;
 	width: 600px;
 }
