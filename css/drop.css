@@ -2,7 +2,7 @@
 	cursor: no-drop;
 }
 
-.card-cant-drop .card:last-child::after {
+.card-cant-drop::after {
 	font-weight: bold;
 	color: red;
 	content: 'Userstories cannot be nested more than 5 levels deep';
@@ -16,7 +16,7 @@
 	right: 0;
 	bottom: 0;
 	background: rgb(255, 255, 255);
-   	background: rgba(255, 255, 255, 0.3);
+   	background: rgba(255, 255, 255, 0.8);
    	z-index: 99;
    	border-radius: 5px;
 }
