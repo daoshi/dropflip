@@ -10,6 +10,7 @@
 
 	function flip(e){
 
+		// prevent event from bubbling to parent cards
 		e.stopPropagation();
 
 		var card = $(e.currentTarget);
@@ -20,6 +21,7 @@
 		// unflip any already opened cards
 		unflip();
 
+		// mark the card as flipped visually in the card wall
 		card.addClass('card-flipped');
 
 		// create a container
@@ -32,18 +34,20 @@
 		// to match look and feel
 		flipContainer.addClass(cardClass);
 
+		// set the card in the flip container
+		// to the same dimensions as the card in the cardwall
+		flipContainer.find('.card-front').css({
+			height: card.height(),
+			width: card.width()
+		});
+
 		// insert into DOM
 		$('body').append(flipContainer);
 
-		// get the position of the card in the card wall
-		var position = {
-			top: card.offset().top + 'px',
-			left: card.offset().left + 'px'
-		};
-		// store it in the container for later retreval
-		flipContainer.data(position);
-		// set the position the container to that of the card
-		flipContainer.css(position);
+		flipContainer.css({
+			top: card.offset().top - $(window).scrollTop() + 'px',
+			left: card.offset().left - $(window).scrollLeft() + 'px'
+		});
 
 		// do flip animation
 		flipContainer.addClass('flipped').animate({
@@ -67,8 +71,8 @@
 
 		// animate back to the card's position in the card wall
 		flipContainer.animate({
-			top: flipContainer.data('top'),
-			left: flipContainer.data('left')
+			top: flippedCard.offset().top - $(window).scrollTop() + 'px',
+			left: flippedCard.offset().left - $(window).scrollLeft() + 'px'
 		}, 500, function(){
 			flipContainer.remove();
 			flippedCard.removeClass('card-flipped');

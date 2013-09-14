@@ -12,6 +12,7 @@
 	text-transform: uppercase;
 	padding: 10px 15px;
 	background-color: #3188AB;
+	border-radius: 5px;
 }
 
 .second-level-card .card-front {
