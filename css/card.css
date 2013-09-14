@@ -29,7 +29,7 @@
 	position: relative;
 }
 
-.card.flipped::after {
+.card-flipped::after {
 	content: '';
 	position: absolute;
 	top: 0;
